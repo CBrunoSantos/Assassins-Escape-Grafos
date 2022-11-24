@@ -6,25 +6,32 @@ using UnityEngine;
 public class Murder : MonoBehaviour
 {
     private int[,] graph
-            = new int[,] { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
-                            { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
-                            { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
-                            { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
-                            { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
-                            { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
-                            { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
-                            { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
-                            { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
+            = new int[,] {
+                            { 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 2, 0, 8, 0, 3, 0, 0, 0, 0,0 , 0 },
+                            { 0, 8, 0, 0, 0, 0, 3, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 1, 0, 4, 0, 6, 0, 0, 0 },
+                            { 0, 0, 0, 0, 4, 0, 4, 0, 6, 0, 0 },
+                            { 0, 0, 0, 3, 0, 0, 4, 0, 4, 0, 7 },
+                            { 0, 0, 0, 0, 6, 0, 0, 0, 4, 0, 0 },
+                            { 0, 0, 0, 0, 0, 6, 0, 4, 0, 1, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4 },
+                            { 0, 0, 0, 0, 0, 0, 7, 0, 4, 0, 0 }
+                        };
     private Vector3[] unityGraphPosition 
-        = { new Vector3(-192.270004f,-637.570862f,-76.25f),
-            new Vector3(-190.300003f,-637.570862f,-72.6999969f),
-            new Vector3(-187.570007f,-637.570862f,-72.6999969f),
-            new Vector3(-185.460007f,-637.570862f,-72.6999969f),
-            new Vector3(-183.449997f,-637.570862f,-76.0800018f),
-            new Vector3(-185.5f,-637.570862f,-79.9199982f),
-            new Vector3(-187.729996f,-637.570862f,-79.9199982f),
-            new Vector3(-190.309998f,-637.570862f,-79.9199982f),
-            new Vector3(-187.679993f,-637.570862f,-76.4599991f)};
+        = { new Vector3(-175.525f,-637.58f,-91.562f), //A
+            new Vector3(-179.74f,-637.58f,-91.562f), //B
+            new Vector3(-195.61f,-637.58f,-91.562f), //C
+            new Vector3(-177.56f,-637.58f,-85.53f), //D
+            new Vector3(-179.68f,-637.58f,-85.53f), //E
+            new Vector3(-187.57f,-637.58f,-85.53f), //F
+            new Vector3(-195.64f,-637.58f,-85.53f), //G
+            new Vector3(-177.64f,-637.58f,-73.56f), //H
+            new Vector3(-187.58f,-637.58f,-73.56f), //I
+            new Vector3(-187.58f,-637.58f,-71.56f), //J
+            new Vector3(-195.6f,-637.58f,-71.56f), //K
+        };
 
     public int playerLocation;
     public int murderLocation;
@@ -54,7 +61,7 @@ public class Murder : MonoBehaviour
             Debug.Log("Calculando nova trajetoria!");
             ArrayList fullpath = ShortestPath.Dijkstra(graph, murderLocation , playerLocation);
             StartCoroutine(movementMurderOnebyOne(fullpath));
-            yield return new WaitForSeconds(30.0f);
+            yield return new WaitForSeconds(10.0f);
         }
     }
     IEnumerator movementMurderOnebyOne(ArrayList fullpath)
