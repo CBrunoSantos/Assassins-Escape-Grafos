@@ -27,13 +27,14 @@ public class Murder : MonoBehaviour
             new Vector3(-179.68f,-637.58f,-85.53f), //E
             new Vector3(-187.57f,-637.58f,-85.53f), //F
             new Vector3(-195.64f,-637.58f,-85.53f), //G
-            new Vector3(-177.64f,-637.58f,-73.56f), //H
+            new Vector3(-179.64f,-637.58f,-73.56f), //H
             new Vector3(-187.58f,-637.58f,-73.56f), //I
             new Vector3(-187.58f,-637.58f,-71.56f), //J
             new Vector3(-195.6f,-637.58f,-71.56f), //K
         };
 
     public int playerLocation;
+    public GameObject player;
     public int murderLocation;
     public bool stoped;
 
@@ -41,6 +42,7 @@ public class Murder : MonoBehaviour
     private Vector3 pathToGo;
     public Rigidbody rb;
 
+    public ArrayList fullpath;
     [Range(0f,1f)]
     public float t;
     private void Awake()
@@ -53,20 +55,22 @@ public class Murder : MonoBehaviour
     }
     private void Update()
     {
+        playerLocation = player.GetComponent<Linus>().playerPosition;
         rb.position = Vector3.Lerp(this.transform.position, pathToGo, t);
     }
     IEnumerator FindPlayerCorroutine() {
         while (!playerCaptured || murderLocation != playerLocation)
         {
             Debug.Log("Calculando nova trajetoria!");
-            ArrayList fullpath = ShortestPath.Dijkstra(graph, murderLocation , playerLocation);
+            ArrayList fullpath = ShortestPath.Dijkstra(graph, murderLocation, playerLocation);
             StartCoroutine(movementMurderOnebyOne(fullpath));
             yield return new WaitForSeconds(10.0f);
         }
     }
     IEnumerator movementMurderOnebyOne(ArrayList fullpath)
     {
-        foreach (int path in fullpath) {
+        foreach (int path in fullpath)
+        {
             Debug.Log("Estou no vertice: " + path);
             pathToGo = unityGraphPosition[path];
             murderLocation = path;
