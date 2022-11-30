@@ -7,17 +7,17 @@ public class Murder : MonoBehaviour
 {
     private int[,] graph
             = new int[,] {
-                            { 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                            { 2, 0, 8, 0, 3, 0, 0, 0, 0,0 , 0 },
-                            { 0, 8, 0, 0, 0, 0, 3, 0, 0, 0, 0 },
-                            { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 },
-                            { 0, 0, 0, 1, 0, 4, 0, 6, 0, 0, 0 },
-                            { 0, 0, 0, 0, 4, 0, 4, 0, 6, 0, 0 },
-                            { 0, 0, 0, 3, 0, 0, 4, 0, 4, 0, 7 },
-                            { 0, 0, 0, 0, 6, 0, 0, 0, 4, 0, 0 },
-                            { 0, 0, 0, 0, 0, 6, 0, 4, 0, 1, 0 },
-                            { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4 },
-                            { 0, 0, 0, 0, 0, 0, 7, 0, 4, 0, 0 }
+                            { 0,2,0,0,0,0,0,0,0,0,0 },
+                            { 2,0,8,0,3,0,0,0,0,0,0 },
+                            { 0,8,0,0,0,0,3,0,0,0,0 },
+                            { 0,0,0,0,1,0,0,0,0,0,0 },
+                            { 0,0,0,1,0,4,0,6,0,0,0 },
+                            { 0,0,0,0,4,0,4,0,6,0,0 },
+                            { 0,0,3,0,0,4,0,0,0,0,7 },
+                            { 0,0,0,0,6,0,0,0,4,0,0 },
+                            { 0,0,0,0,0,6,0,4,0,1,0 },
+                            { 0,0,0,0,0,6,0,0,0,1,0 },
+                            { 0,0,0,0,0,0,7,0,0,4,0 }
                         };
     private Vector3[] unityGraphPosition 
         = { new Vector3(-175.525f,-637.58f,-91.562f), //A
@@ -49,6 +49,7 @@ public class Murder : MonoBehaviour
     {
         this.transform.position = unityGraphPosition[murderLocation];
     }
+
     private void Start()
     {
         StartCoroutine(FindPlayerCorroutine());
@@ -67,8 +68,10 @@ public class Murder : MonoBehaviour
             yield return new WaitForSeconds(10.0f);
         }
     }
-    IEnumerator movementMurderOnebyOne(ArrayList fullpath)
-    {
+    IEnumerator movementMurderOnebyOne(ArrayList fullpath){
+        foreach(int path in fullpath){
+            Debug.Log(path);
+        }
         foreach (int path in fullpath)
         {
             Debug.Log("Estou no vertice: " + path);
