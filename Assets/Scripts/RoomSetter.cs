@@ -11,5 +11,9 @@ public class RoomSetter : MonoBehaviour
         if (other.CompareTag("Player")) {
             other.GetComponent<Linus>().playerPosition = id;
         }
+        if (other.CompareTag("Monster"))
+        {
+            other.GetComponent<Murder>().murderLocation = id;
+        }
     }
 }

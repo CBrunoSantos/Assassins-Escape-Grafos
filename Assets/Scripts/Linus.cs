@@ -14,8 +14,8 @@ public class Linus : MonoBehaviour
     Vector3 strafe; //esquerda & direita
     Vector3 vertical; //pulo & gravidade
 
-    float forwardSpeed = 5f;
-    float strafeSpeed = 5f;
+    float forwardSpeed = 1f;
+    float strafeSpeed = 1f;
 
     void Start()
     {
